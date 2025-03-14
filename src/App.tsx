@@ -24,8 +24,6 @@ export default function App() {
 
   return (
     <main className="max-w-[450px]  py-20 mx-auto">
-      <h1 className="text-center text-xl font-medium mb-10">Hello, world!</h1>
-
       <Colorpicker />
 
       <div className="w-fit mx-auto">
