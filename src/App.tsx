@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useColorsStore } from "./colors.store";
-import { Colorpicker } from "./components/Colorpicker";
+import { ColorPicker } from "./components/Colorpicker";
 import { Logo } from "./components/Logo";
 
 export default function App() {
   const { colors, reset } = useColorsStore();
+  const [currentFocus, setCurrentFocus] = useState<number | null>(null);
 
   const handleDownload = () => {
     const svg = document.querySelector("svg");
@@ -22,12 +24,16 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
+  const handlePathClick = (index: number) => {
+    setCurrentFocus(index);
+  };
+
   return (
     <main className="max-w-[450px]  py-20 mx-auto">
-      <Colorpicker />
+      <ColorPicker currentFocus={currentFocus} />
 
       <div className="w-fit mx-auto">
-        <Logo colors={colors} />
+        <Logo colors={colors} onPathClick={handlePathClick} />
       </div>
 
       <button
