@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Download, RotateCcw } from "lucide-react";
 import { useColorsStore } from "./colors.store";
 import { ColorPicker } from "./components/Colorpicker";
 import { Logo } from "./components/Logo";
@@ -13,13 +14,14 @@ export default function App() {
       alert("No SVG found");
       return;
     }
+
     const serializer = new XMLSerializer();
     const source = serializer.serializeToString(svg);
     const blob = new Blob([source], { type: "image/svg+xml" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "logo.svg";
+    a.download = "echo-logo.svg";
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -28,27 +30,52 @@ export default function App() {
     setCurrentFocus(index);
   };
 
+  const handleReset = () => {
+    reset();
+    setCurrentFocus(null);
+  };
+
   return (
-    <main className="max-w-[450px]  py-20 mx-auto">
-      <ColorPicker currentFocus={currentFocus} />
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
+      <div className="max-w-4xl mx-auto px-4">
+        <header className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            echo Logo Creator
+          </h1>
+        </header>
 
-      <div className="w-fit mx-auto">
-        <Logo colors={colors} onPathClick={handlePathClick} />
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="space-y-6">
+            <ColorPicker currentFocus={currentFocus} />
+
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={handleDownload}
+                className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-md"
+              >
+                <Download className="w-5 h-5" />
+                Download SVG
+              </button>
+
+              <button
+                onClick={handleReset}
+                className="flex items-center gap-2 px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors shadow-md"
+              >
+                <RotateCcw className="w-5 h-5" />
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <Logo
+              colors={colors}
+              onPathClick={handlePathClick}
+              selectedPath={currentFocus}
+            />
+          </div>
+        </div>
       </div>
-
-      <button
-        onClick={handleDownload}
-        className="py-4 px-6 bg-blue-700 hover:bg-blue-600 mt-10 mx-auto flex text-white rounded-full transition-colors"
-      >
-        Last ned SVG
-      </button>
-
-      <button
-        onClick={reset}
-        className="py-2 px-5 bg-red-600 hover:bg-red-700 mt-10 mx-auto flex text-white rounded-full transition-colors"
-      >
-        Nullstill
-      </button>
-    </main>
+    </div>
   );
 }

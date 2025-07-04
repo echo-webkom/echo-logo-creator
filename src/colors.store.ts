@@ -26,25 +26,27 @@ type Actions = {
   reset: () => void;
 };
 
+const defaultColors = [
+  COLOR_1,
+  COLOR_2,
+  COLOR_3,
+  COLOR_4,
+  COLOR_5,
+  COLOR_6,
+  COLOR_7,
+  COLOR_8,
+  COLOR_9,
+  COLOR_10,
+  COLOR_11,
+  COLOR_12,
+  COLOR_13,
+  COLOR_14,
+  COLOR_15,
+  COLOR_16,
+];
+
 export const useColorsStore = create<State & Actions>()((set) => ({
-  colors: [
-    COLOR_1,
-    COLOR_2,
-    COLOR_3,
-    COLOR_4,
-    COLOR_5,
-    COLOR_6,
-    COLOR_7,
-    COLOR_8,
-    COLOR_9,
-    COLOR_10,
-    COLOR_11,
-    COLOR_12,
-    COLOR_13,
-    COLOR_14,
-    COLOR_15,
-    COLOR_16,
-  ],
+  colors: [...defaultColors],
   setColor: (index: number, color: string) => {
     set((state) => ({
       colors: [
@@ -55,8 +57,6 @@ export const useColorsStore = create<State & Actions>()((set) => ({
     }));
   },
   reset: () => {
-    set((state) => ({
-      colors: state.colors.map((color) => color),
-    }));
+    set({ colors: [...defaultColors] });
   },
 }));
