@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "lint": "eslint .",
+    "preview": "pnpm run build && vite preview",
+    "deploy": "pnpm run build && wrangler deploy",
+    "cf-typegen": "wrangler types",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -19,6 +21,7 @@
     "zustand": "5.0.6"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.9.0",
     "@eslint/js": "^9.30.1",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
@@ -33,7 +36,8 @@
     "prettier": "3.6.2",
     "tailwindcss": "4.1.11",
     "typescript": "5.8.3",
-    "vite": "7.0.2"
+    "vite": "7.0.2",
+    "wrangler": "^4.23.0"
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }

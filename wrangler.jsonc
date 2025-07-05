@@ -1,0 +1,22 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "logo-echo",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-07-05",
+  "assets": {
+    "not_found_handling": "single-page-application",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "logo.echo-webkom.no",
+    },
+  ],
+}
