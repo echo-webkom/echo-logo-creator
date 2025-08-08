@@ -15,35 +15,35 @@ export const DEFAULT_COLORS = [
 ];
 
 export const HALLOWEEN_COLORS = [
-	'#FF4500',
-	'#FFB347',
-	'#FF6347',
-	'#FF8C00',
-	'#FFA500',
-	'#4B0082',
-	'#800080',
-	'#9932CC',
-	'#000000',
-	'#2F4F4F',
-	'#696969',
-	'#1C1C1C',
-	'#333333'
+	'#ff8c00',
+	'#ffb347',
+	'#ffb347',
+	'#ffb347',
+	'#ffd4a3',
+	'#8b4513',
+	'#8b4513',
+	'#a0522d',
+	'#654321',
+	'#964b00',
+	'#d2691e',
+	'#ffb347',
+	'#ff8c00'
 ];
 
 export const CHRISTMAS_COLORS = [
-	'#C41E3A',
-	'#DC143C',
-	'#B22222',
-	'#8B0000',
-	'#FF6B6B',
-	'#228B22',
+	'#dc143c',
+	'#ff6b6b',
+	'#ff6b6b',
+	'#ff6b6b',
+	'#ffcccb',
+	'#228b22',
+	'#228b22',
+	'#32cd32',
 	'#006400',
-	'#32CD32',
-	'#90EE90',
-	'#2E8B57',
-	'#FFD700',
-	'#FFA500',
-	'#FFFACD'
+	'#2e8b57',
+	'#90ee90',
+	'#ff6b6b',
+	'#dc143c'
 ];
 
 export interface ColorPreset {
