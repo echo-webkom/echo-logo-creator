@@ -1,31 +1,14 @@
 <script lang="ts">
 	import Logo from '$lib/components/Logo.svelte';
 	import ColorPicker from '$lib/components/ColorPicker.svelte';
+	import { DEFAULT_COLORS, type ColorPreset } from '$lib/colors.js';
 
-	const defaultColors = [
-		'#FEBE10',
-		'#FFE6B4',
-		'#FFD67B',
-		'#FFD67B',
-		'#FFD67B',
-		'#94C9D2',
-		'#94C9D2',
-		'#46ACB9',
-		'#D9D9D9',
-		'#00A0AF',
-		'#D9D9D9',
-		'#0095A4',
-		'#D9D9D9',
-		'#008998',
-		'#FEBE10',
-		'#FFD67B'
-	];
-
-	let colors = $state<Array<string>>(defaultColors);
+	let colors = $state<Array<string>>(DEFAULT_COLORS);
 	let currentFocus = $state<number | null>(null);
+	let currentPreset = $state<string>('Default');
 
 	function reset() {
-		colors = [...defaultColors];
+		colors = [...DEFAULT_COLORS];
 	}
 
 	function handleDownload() {
@@ -50,8 +33,15 @@
 		currentFocus = index;
 	}
 
+	function handlePresetChange(preset: ColorPreset) {
+		colors = [...preset.colors];
+		currentPreset = preset.name;
+		currentFocus = null;
+	}
+
 	function handleReset() {
 		reset();
+		currentPreset = 'Default';
 		currentFocus = null;
 	}
 </script>
@@ -72,13 +62,13 @@
 				<div class="mt-6 flex justify-center gap-4">
 					<button
 						onclick={handleReset}
-						class="rounded-lg bg-gray-600 px-6 py-2 font-medium text-white transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+						class="rounded-lg bg-gray-600 px-6 py-2 font-medium text-white transition-all hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 active:scale-[0.98]"
 					>
 						Reset Colors
 					</button>
 					<button
 						onclick={handleDownload}
-						class="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+						class="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98]"
 					>
 						Download SVG
 					</button>
@@ -86,7 +76,7 @@
 			</div>
 
 			<div class="lg:w-80">
-				<ColorPicker bind:colors {currentFocus} />
+				<ColorPicker bind:colors {currentFocus} {currentPreset} onPresetChange={handlePresetChange} />
 			</div>
 		</div>
 	</div>
