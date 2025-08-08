@@ -46,6 +46,38 @@ export const CHRISTMAS_COLORS = [
 	'#dc143c'
 ];
 
+export const NEON_COLORS = [
+	'#00ffff',
+	'#7fff00',
+	'#7fff00',
+	'#7fff00',
+	'#ccffcc',
+	'#ff00ff',
+	'#ff00ff',
+	'#ff1493',
+	'#00ff00',
+	'#00bfff',
+	'#ffff00',
+	'#7fff00',
+	'#00ffff'
+];
+
+export const MONOCHROME_COLORS = [
+	'#000000',
+	'#333333',
+	'#333333',
+	'#333333',
+	'#666666',
+	'#999999',
+	'#999999',
+	'#cccccc',
+	'#e0e0e0',
+	'#f0f0f0',
+	'#ffffff',
+	'#333333',
+	'#000000'
+];
+
 export interface ColorPreset {
 	name: string;
 	colors: Array<string>;
@@ -54,5 +86,7 @@ export interface ColorPreset {
 export const COLOR_PRESETS: ColorPreset[] = [
 	{ name: 'Default', colors: DEFAULT_COLORS },
 	{ name: 'Halloween', colors: HALLOWEEN_COLORS },
-	{ name: 'Christmas', colors: CHRISTMAS_COLORS }
+	{ name: 'Christmas', colors: CHRISTMAS_COLORS },
+	{ name: 'Neon', colors: NEON_COLORS },
+	{ name: 'Monochrome', colors: MONOCHROME_COLORS }
 ];
